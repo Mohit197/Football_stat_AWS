@@ -1,5 +1,3 @@
-# FootBall Statistic Project Using AWS
+#Python Flask FrameWork
 
-## Technologies:
-
-### EC2 Instance, S3 Bucket, MongoDB, and Flask
+##:)
