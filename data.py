@@ -13,7 +13,7 @@ def excel_to_json(excel_file_path, columns_of_interest, json_file_path):
 
     # Write list of dictionaries to a JSON file
     with open(json_file_path, 'w') as json_file:
-        json.dump(player_data_list, json_file, indent=4)
+        json.dump(player_data_list, json_file)
 
 # Example usage:
 excel_file_path = '/Users/arslantariq/Desktop/2021-2022_Football_Player_Stats_final.xlsm'
