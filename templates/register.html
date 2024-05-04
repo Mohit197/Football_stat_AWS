@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        /* Style for the hidden error class */
+        .error--hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Register</h2>
+    <form action="/register" method="POST">
+
+        <label for="username">Username:</label><br>
+        <input type="email" name="username" class="field" required><br>
+
+        <label for="password">Password:</label><br> <!-- Corrected "for" attribute -->
+        <input type="password" name="password" class="field" required><br>
+
+        <p class="error error--hidden"></p>
+        <input type="submit" value="Sign Up">
+    </form>
+</body>
+</html>

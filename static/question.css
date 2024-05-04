@@ -1,0 +1,32 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif; 
+    background-image: url("/static/question_Background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card {
+    width: 80%;
+    height: 50%;
+}
+
+h1 {
+    color: #003C43;
+}
+
+h2 {
+    color: #003C43;
+}
+
+label {
+    color: #003C43;
+}
+
+.card-body {
+    font-size: 1.6rem; /* Adjust font size */
+}
+.question {
+    margin-bottom: 1.5rem; /* Adjust spacing between question and choices */
+}
+label {
+    font-size: 1rem; /* Adjust font size for choices */
+}
