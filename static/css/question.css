@@ -1,6 +1,5 @@
 body {
     font-family: 'Roboto Condensed', sans-serif; 
-    background-image: url("/static/question_Background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }

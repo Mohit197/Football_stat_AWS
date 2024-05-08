@@ -1,0 +1,82 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+
+.card {
+    margin: 100px auto;
+    width: 300px; /* Adjust the width to your preference */
+    height: 420px; /* Set the same height to make it square */
+    border: 2px solid black; /* Add a border */
+    border-radius: 10px; /* Adjust border radius for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+   
+}
+
+
+.card-body {
+    padding: 40px;
+    
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn-primary:focus {
+    outline: none;
+}
+.error--hidden {
+    display: none;
+    font-family: 'Poetsen One', cursive; 
+    color: red;
+}
+
+h2 {
+    font-family: 'Poetsen One', cursive; /* Specify 'Poetsen One' font-family */
+}
+.form-control {
+    border: none;
+    border-radius: 30px;
+    background-color: #f0f0f0;
+    padding: 15px 25px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-control:focus {
+    outline: none;
+    background-color: #e0e0e0;
+    box-shadow: 0 0 0 3px #4CAF50, 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+

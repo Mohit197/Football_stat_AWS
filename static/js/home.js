@@ -1,9 +1,9 @@
 // Array of background image URLs
 const backgroundImages = [
-    'url("/static/Football_Background1.jpg")',
-    'url("/static/Football_Background2.jpg")',
-    'url("/static/Football_Background3.jpg")',
-    'url("/static/Football_Background4.jpg")'
+    'url("{{ url_for("static", filename="/images/Football_Background1.jpg") }}")',
+    'url("{{ url_for("static", filename="/images/Football_Background2.jpg") }}")',
+    'url("{{ url_for("static", filename="/images/Football_Background3.jpg") }}")',
+    'url("{{ url_for("static", filename="/images/Football_Background4.jpg") }}")'
 ];
 
 // Function to change the background image

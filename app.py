@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, make_response, jsonify
 import bcrypt
 from flask_pymongo import PyMongo
 
@@ -13,28 +13,40 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    if 'username' in session:
+    if session.get('username'):
         return render_template('home.html')
     else:
         return redirect('/login')
+
+@app.route('/check_user_exists')
+def check_user_exists():
+    username = request.args.get('username')
+    users = mongo.db.users
+    existing_user = users.find_one({'name': username})
+    return jsonify({'exists': existing_user is not None})
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         users = mongo.db.users
-        login_user = users.find_one({'name' : request.form['username']})
+        login_user = users.find_one({'name': request.form['username']})
 
-        if login_user:
-            if bcrypt.checkpw(request.form['password'].encode('utf-8'), login_user['password']):
-                session['username'] = request.form['username']
-                return redirect('/')
-        return "Invalid username/password combination"
-    return render_template('login.html')  # Render the login page for GET requests
+        if login_user and bcrypt.checkpw(request.form['password'].encode('utf-8'), login_user['password']):
+            session['username'] = request.form['username']
+            return jsonify({'redirect': '/'})  # Redirect to home page
+        else:
+            return jsonify({'error': 'Invalid username/password combination'}), 400  # Return error with status code 400
+    else:
+        # Handle GET request
+        return render_template('login.html')  # Render the login page for GET requests
+
+
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    session.pop('username', None)
-    return redirect('/login')
+    session.clear()
+    return redirect('/')
 
 @app.route("/register", methods=['POST', 'GET'])
 def register():
@@ -49,8 +61,11 @@ def register():
         return "That username already exists!"
     return render_template('register.html')
 
-
-
+# Ensure responses aren't cached
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    return response
 
 
 
