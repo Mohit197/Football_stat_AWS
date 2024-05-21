@@ -2,10 +2,33 @@ function validatePassword() {
     var passwordInput = document.getElementById("password");
     var errorElement = document.querySelector('.error');
     var usernameInput = document.getElementById("username");
-    
+    var nameInput = document.getElementById("name");
+    var ageInput = document.getElementById("age");
+
+    // Reset error message
+    errorElement.textContent = "";
+    errorElement.classList.add('error--hidden');
+
     // Check password length
     if (passwordInput.value.length < 8) {
         errorElement.textContent = "Password must be at least 8 characters long.";
+        errorElement.classList.remove('error--hidden');
+        return false;
+    }
+
+    // Check name validity
+    var name = nameInput.value.trim();
+    var nameRegex = /^[A-Za-z\s]+$/;
+    if (!nameRegex.test(name)) {
+        errorElement.textContent = "Name must contain only letters and spaces.";
+        errorElement.classList.remove('error--hidden');
+        return false;
+    }
+
+    // Check age validity
+    var age = parseInt(ageInput.value, 10);
+    if (isNaN(age) || age > 70) {
+        errorElement.textContent = "Age must be a valid number and not more than 70.";
         errorElement.classList.remove('error--hidden');
         return false;
     }

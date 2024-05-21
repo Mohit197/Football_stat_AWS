@@ -3,11 +3,36 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
-.card {
-    width: 80%;
-    height: 50%;
+.progress-info {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    color: #000; /* Set text color to black */
 }
-
+.header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E3FEF7;
+    padding: 10px;
+    border-radius: 5px;
+}
+.card {
+    max-width: 600px;
+    width: 100%;
+}
+@media (max-width: 575.98px) {
+    .header-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-box p {
+        margin: 5px 0 0 0;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+}
 h1 {
     color: #003C43;
 }
@@ -20,12 +45,21 @@ label {
     color: #003C43;
 }
 
-.card-body {
-    font-size: 1.6rem; /* Adjust font size */
-}
 .question {
     margin-bottom: 1.5rem; /* Adjust spacing between question and choices */
 }
 label {
     font-size: 1rem; /* Adjust font size for choices */
+}
+.error {
+    color: red;
+    margin-top: 10px;
+}
+.error-message {
+    display: none;
+    color: red;
+}
+
+.error--hidden {
+    display: none;
 }
