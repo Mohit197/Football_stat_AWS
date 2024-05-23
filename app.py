@@ -185,7 +185,11 @@ def question():
     current_question = questions[current_index]
     total_questions = len(questions)
     
-    return render_template('questions.html', current_question=current_question, current_index=current_index, total_questions=total_questions)
+    # Retrieve selected choice from session, if any
+    selected_choice = session.get(f'Question{current_index + 1}', '')
+
+    return render_template('questions.html', current_question=current_question, current_index=current_index, total_questions=total_questions, selected_choice=selected_choice)
+
 
 
 

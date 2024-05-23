@@ -28,36 +28,25 @@
                     <h2>{{ current_question.number }}. {{ current_question.text }}</h2>
                     <form action="/questions" method="POST" id="quiz-form">
                         {% for choice in current_question.choices %}
-                        <input type="radio" id="choice{{ loop.index }}" name="choice" value="{{ choice }}" {% if current_index in selected_choices and selected_choices[current_index] == choice %}checked{% endif %} required>
+                        <input type="radio" id="choice{{ loop.index }}" name="choice" value="{{ choice }}" {% if choice == selected_choice %} checked {% endif %} required>
                         <label for="choice{{ loop.index }}">{{ choice }}</label><br>
                         {% endfor %}
                         <input type="hidden" name="current_index" value="{{ current_index }}">
-                        <input type="hidden" name="selected_choices" id="selected_choices" value="{{ selected_choices }}">
-                        <div class="d-flex justify-content-center mt-3">
-                            {% if current_index > 0 %}
-                            <button type="button" class="btn btn-secondary me-2" onclick="window.location.href='/questions?index={{ current_index - 1 }}'">Back</button>
-                            {% endif %}
-                            {% if current_index < total_questions - 1 %}
-                            <button type="submit" class="btn btn-primary" onclick="return validateForm()">Next</button>
-                            {% else %}
-                            <button type="submit" class="btn btn-success">Submit</button>
-                            {% endif %}
-                        </div>
-                        <p class="error-message" id="error-message">Please select an answer before proceeding to the next question.</p>
+                        <input type="submit" class="btn btn-primary" value="Save">
                     </form>
+                    <div class="d-flex justify-content-center mt-3">
+                        {% if current_index > 0 %}
+                        <button type="button" class="btn btn-secondary me-2" onclick="window.location.href='/questions?index={{ current_index - 1 }}'">Back</button>
+                        {% endif %}
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        {% endif %}
+                    </div>
+                    <p class="error-message" id="error-message">Please select an answer before proceeding to the next question.</p>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        // Check if the user is trying to navigate back using the browser's back button
-        window.onpopstate = function(event) {
-            // If the current URL contains a question index, redirect to the quiz start page
-            if (window.location.href.includes('/questions?index=')) {
-                window.location.href = '/questions';
-            }
-        };
-    
         // Function to validate form submission
         function validateForm() {
             const radios = document.getElementsByName('choice');
@@ -75,6 +64,5 @@
             return true;
         }
     </script>
-    
 </body>
 </html>
