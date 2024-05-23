@@ -164,19 +164,23 @@ def question():
         
         # Save response in session
         session[f'Question{current_index + 1}'] = choice
-        
-        next_index = current_index + 1
-        if next_index >= len(questions):
-            # Save all responses to the database
-            user_data = {key: session[key] for key in session if key.startswith('Question')}
-            user_data['Name'] = session.get('name')
-            user_data['Age'] = session.get('age')
-            db.results.insert_one(user_data)
-            # Set session variable to indicate quiz completion
-            session['quiz_completed'] = True
-            return redirect('/user')
-        else:
-            return redirect(f"/questions?index={next_index}")
+
+        if 'next_button' in request.form:
+            # Check if a choice is selected
+            if choice == "":
+                return redirect(f'/questions?index={current_index}&error=1')  # Include error message
+            next_index = current_index + 1
+            if next_index >= len(questions):
+                # Save all responses to the database
+                user_data = {key: session[key] for key in session if key.startswith('Question')}
+                user_data['Name'] = session.get('name')
+                user_data['Age'] = session.get('age')
+                db.results.insert_one(user_data)
+                # Set session variable to indicate quiz completion
+                session['quiz_completed'] = True
+                return redirect('/user')
+            else:
+                return redirect(f"/questions?index={next_index}")
 
     current_index = int(request.args.get('index', 0))
     if current_index >= len(questions):
@@ -187,6 +191,7 @@ def question():
     
     # Retrieve selected choice from session, if any
     selected_choice = session.get(f'Question{current_index + 1}', '')
+    
 
     return render_template('questions.html', current_question=current_question, current_index=current_index, total_questions=total_questions, selected_choice=selected_choice)
 
