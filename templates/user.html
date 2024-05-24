@@ -1,12 +1,51 @@
+<!-- user.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>{{ user_info.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/user.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">    
 </head>
 <body>
-    <h1>Hello to World Of Engineers !:)</h1>  
-    <a href="/clear_question_session" class="btn btn-primary">Start Over</a>  
+    <div class="container-fluid">
+        <div class="row">
+            <div id="left-side" class="d-none d-md-block">
+                <img src="{{ user_info.image_url }}" alt="User Image">
+                <h3>{{ user_info.name }}</h3>
+                <p>Age: {{ user_info.age }}</p>
+                <a href="#" onclick="loadContent('user-home')">Home</a>
+                <a href="#" onclick="loadContent('user-about')">About</a>
+                <a href="#" onclick="loadContent('contact')">Contact</a>
+            </div>
+            <div id="right-side" class="container-fluid">
+                <div id="content">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    function loadContent(page) {
+        fetch('/' + page)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+
+    
 </body>
 </html>

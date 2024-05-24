@@ -1,17 +1,18 @@
-from flask import Flask, render_template, request, redirect, session, make_response, jsonify
+from flask import Flask, render_template, request, redirect, session, make_response, jsonify,url_for
 import bcrypt
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 
-
 app = Flask(__name__)
 app.secret_key = "12ax12221zzx57z"
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
 # Connect to MongoDB Atlas cluster
 uri = "mongodb+srv://arslantariq931:Hashmap12@statsfootball.ujhfl7y.mongodb.net/?retryWrites=true&w=majority&appName=StatsFootball"
 client = MongoClient(uri)
 db = client.get_database('Football')
+
 
 
 
@@ -22,6 +23,11 @@ def home():
         return render_template('home.html', name=name)
     else:
         return redirect('/login')
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return redirect('/')
 
 
 @app.route('/check_user_exists')
@@ -50,10 +56,6 @@ def login():
         return render_template('login.html')  # Render the login page for GET requests
 
 
-@app.route('/logout', methods=['POST'])
-def logout():
-    session.clear()
-    return redirect('/')
 
 @app.route("/register", methods=['POST', 'GET'])
 def register():
@@ -76,17 +78,41 @@ def register():
     return render_template('register.html')
 
 
-# Ensure responses aren't cached
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    return response
-
 
 
 @app.route("/about")
 def about():
+    # Check if the user is logged in
+    if 'name' not in session:
+        return redirect('/login')
     return render_template('about.html')
+
+
+@app.route("/user")
+def user():
+    # Check if the user is logged in
+    if 'name' not in session:
+        return redirect('/login')
+    
+    user_info = {
+        'name': session.get('name'),
+        'image_url': url_for('static', filename='/images/Football_Background3.jpg'),
+        'age': session.get('age')
+    }
+    return render_template('user.html', user_info=user_info)
+
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html')
+
+@app.route("/user-home")
+def userhome():
+    return render_template('user-home.html')
+
+@app.route("/user-about")
+def userabout():
+    return render_template('user-about.html')
 
 
 
@@ -124,15 +150,15 @@ def read_questions_from_file(file_path):
 
 questions = read_questions_from_file('questions.txt')
 
-@app.route("/user")
-def user():
+@app.route("/results")
+def results():
     # Check if the user is logged in
     if 'name' not in session:
         return redirect('/login')
     
     # Check if the quiz is completed
     if 'quiz_completed' in session:
-        return render_template('user.html')
+        return render_template('results.html')
     else:
         return redirect('/questions')
 
@@ -145,13 +171,13 @@ def question():
     
     # Check if the quiz is completed
     if 'quiz_completed' in session:
-        return redirect('/user')
+        return redirect('/results')
 
     # Ensure the user cannot manipulate the URL to access questions out of order
     if request.method == 'GET':
         current_index = int(request.args.get('index', 0))
         if current_index >= len(questions):
-            return redirect('/user')
+            return redirect('/results')
 
         # Check if the user has answered all preceding questions
         for i in range(current_index):
@@ -178,13 +204,13 @@ def question():
                 db.results.insert_one(user_data)
                 # Set session variable to indicate quiz completion
                 session['quiz_completed'] = True
-                return redirect('/user')
+                return redirect('/results')
             else:
                 return redirect(f"/questions?index={next_index}")
 
     current_index = int(request.args.get('index', 0))
     if current_index >= len(questions):
-        return redirect('/user')
+        return redirect('/results')
     
     current_question = questions[current_index]
     total_questions = len(questions)
