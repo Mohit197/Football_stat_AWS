@@ -1,16 +1,8 @@
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
 
 .card {
     margin: 100px auto;
     width: 340px; /* Adjust the width to your preference */
-    height: 530px; /* Set the same height to make it square */
+    height: 490px; /* Set the same height to make it square */
     border: 2px solid black; /* Add a border */
     border-radius: 10px; /* Adjust border radius for rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -87,5 +79,14 @@ h2 {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
+}
+.register-link {
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make it bold */
+}
+
+.register-link:hover {
+    text-decoration: underline; /* Underline on hover */
 }
 

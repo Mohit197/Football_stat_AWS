@@ -124,31 +124,32 @@ def userabout():
 
 
 
-
-
 def read_questions_from_file(file_path):
     questions = []
     with open(file_path, 'r') as file:
         lines = file.readlines()
-        current_question = {}
+        current_question = None
+        
         for line in lines:
             line = line.strip()
             if line.startswith("Q"):
                 if current_question:
                     questions.append(current_question)
                 current_question = {"text": "", "choices": []}
-                question_parts = line.split(': ', 1)
+                question_parts = line.split(':', 1)
                 if len(question_parts) == 2:
                     current_question["text"] = question_parts[1].strip()
-                else:
-                    current_question["text"] = line
             else:
-                current_question["choices"].append(line)
+                if current_question is not None:
+                    current_question["choices"].append(line.strip())
+        
         if current_question:
             questions.append(current_question)
+    
     return questions
 
 questions = read_questions_from_file('questions.txt')
+
 
 @app.route("/results")
 def results():
@@ -217,9 +218,10 @@ def question():
     
     # Retrieve selected choice from session, if any
     selected_choice = session.get(f'Question{current_index + 1}', '')
-    
+    is_last_question = (current_index == total_questions - 1)
 
-    return render_template('questions.html', current_question=current_question, current_index=current_index, total_questions=total_questions, selected_choice=selected_choice)
+    return render_template('questions.html', current_question=current_question, current_index=current_index, total_questions=total_questions, selected_choice=selected_choice, is_last_question=is_last_question)
+
 
 
 
@@ -234,3 +236,6 @@ def clear_question_session():
     # Remove the quiz completed flag from the session
     session.pop('quiz_completed', None)
     return redirect('/questions')
+
+
+#source venv/bin/activate 

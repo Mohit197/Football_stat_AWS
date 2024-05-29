@@ -7,8 +7,21 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/login.css') }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='/images/Football_Background5.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0; /* Remove any default margin */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
-<body style="background-color: #CCD3CA;">
     <div class="card">
         <div class="card-body text-center">
             <!-- Add your profile image here -->
@@ -30,7 +43,7 @@
                 </div>
             </form>
             <div class="text-center">
-                <button class="btn btn-primary btn-block" onclick="location.href='/register'">Register</button>
+                <p>Don't have an account? <a href="/register" class="register-link">Register</a></p>
             </div>
         </div>
     </div>
