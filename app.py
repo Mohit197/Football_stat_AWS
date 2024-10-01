@@ -120,6 +120,18 @@ def userabout():
 
 
 
+@app.route("/results")
+def results():
+    # Check if the user is logged in
+    if 'name' not in session:
+        return redirect('/login')
+    
+    # Check if the quiz is completed
+    if 'quiz_completed' in session:
+        return render_template('results.html')
+    else:
+        return redirect('/questions')
+
 
 
 
@@ -141,7 +153,11 @@ def read_questions_from_file(file_path):
                     current_question["text"] = question_parts[1].strip()
             else:
                 if current_question is not None:
-                    current_question["choices"].append(line.strip())
+                    choice_parts = line.split(':')
+                    if len(choice_parts) == 2:
+                        choice_text = choice_parts[0].strip()
+                        choice_value = float(choice_parts[1].strip())
+                        current_question["choices"].append({"text": choice_text, "value": choice_value})
         
         if current_question:
             questions.append(current_question)
@@ -151,17 +167,6 @@ def read_questions_from_file(file_path):
 questions = read_questions_from_file('questions.txt')
 
 
-@app.route("/results")
-def results():
-    # Check if the user is logged in
-    if 'name' not in session:
-        return redirect('/login')
-    
-    # Check if the quiz is completed
-    if 'quiz_completed' in session:
-        return render_template('results.html')
-    else:
-        return redirect('/questions')
 
 
 @app.route("/questions", methods=['GET', 'POST'])
@@ -187,21 +192,43 @@ def question():
 
     if request.method == 'POST':
         current_index = int(request.form['current_index'])
-        choice = request.form['choice']
+        choice_value = request.form['choice']
         
-        # Save response in session
-        session[f'Question{current_index + 1}'] = choice
+        # Find the choice text associated with the selected value
+        choice_text = None
+        for choice in questions[current_index]["choices"]:
+            if str(choice["value"]) == choice_value:
+                choice_text = choice["text"]
+                break
+
+        # Save both choice text and value in session
+        session[f'Question{current_index + 1}'] = choice_text
+        session[f'Question{current_index + 1}Value'] = choice_value
+
+        # Get Data from..
+        # make in to Dict and save it to DB as well.
+        # return a arr quiz
+        # Mohit functiond (model.py,arr quiz)
+        # return results
 
         if 'next_button' in request.form:
             # Check if a choice is selected
-            if choice == "":
+            if choice_text is None:
                 return redirect(f'/questions?index={current_index}&error=1')  # Include error message
             next_index = current_index + 1
             if next_index >= len(questions):
                 # Save all responses to the database
-                user_data = {key: session[key] for key in session if key.startswith('Question')}
-                user_data['Name'] = session.get('name')
-                user_data['Age'] = session.get('age')
+                user_data = {
+                    'Name': session.get('name'),
+                    'Age': session.get('age'),
+                }
+                for i in range(len(questions)):
+                    user_data[f'Question{i + 1}'] = session.get(f'Question{i + 1}')
+                    user_data[f'Question{i + 1}Value'] = session.get(f'Question{i + 1}Value')
+
+
+
+
                 db.results.insert_one(user_data)
                 # Set session variable to indicate quiz completion
                 session['quiz_completed'] = True
@@ -217,10 +244,11 @@ def question():
     total_questions = len(questions)
     
     # Retrieve selected choice from session, if any
-    selected_choice = session.get(f'Question{current_index + 1}', '')
+    selected_choice = session.get(f'Question{current_index + 1}Value', '')
     is_last_question = (current_index == total_questions - 1)
 
     return render_template('questions.html', current_question=current_question, current_index=current_index, total_questions=total_questions, selected_choice=selected_choice, is_last_question=is_last_question)
+
 
 
 
@@ -233,9 +261,12 @@ def clear_question_session():
     for key in list(session.keys()):
         if key.startswith('Question'):
             session.pop(key)
+        if key.startswith('QuestionValue'):
+            session.pop(key)
     # Remove the quiz completed flag from the session
     session.pop('quiz_completed', None)
     return redirect('/questions')
+
 
 
 #source venv/bin/activate 
