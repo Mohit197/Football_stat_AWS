@@ -9,8 +9,22 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: #CCD3CA;">
-    <div class="card mt-5">
+<body >
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='/images/Football_Background_register.jpg') }}");
+            background-size: 100%; /* Adjust this value to zoom out more or less */
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0; /* Remove any default margin */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <div class="card mt-5" style="background-color:#F5F7F8;border: 1px solid black;">
         <div class="card-body">
             <h2 class="text-center">Create User</h2>
             <form action="/register" method="post" onsubmit="return validatePassword()">
