@@ -25,6 +25,27 @@
             margin-left: 20px; /* Adjust this value as needed */
         }
     </style>
+    <style>
+        /* Styles for the footer icon */
+        .footer-icon {
+            position: fixed; /* Fix the icon in the viewport */
+            bottom: 10px; /* Distance from the bottom */
+            right: 10px; /* Distance from the right */
+            z-index: 1000; /* Keep it above other elements */
+        }
+
+        .footer-icon img {
+            max-width: 100px; /* Maximum width for the image */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 768px) {
+            .footer-icon img {
+                max-width: 80px; /* Smaller size for mobile */
+            }
+        }
+    </style>
     <script src="{{ url_for('static', filename='/js/home.js') }}"></script>
     <script>
         /* If browser back button was used, flush cache */
@@ -38,47 +59,43 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #631402;">
-        <a class="navbar-brand" href="/">Football App</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="color: #f0f0f0;">
+        <a class="navbar-brand" style="font-weight: bold; display: flex; align-items: center;">
+            <img src="{{ url_for('static', filename='images/Football_Background_Home_navbar.png') }}" alt="Football Icon" style="height: 30px; margin-right: 10px;">
+            ML Soccer Application
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="/user">{{ name }}</a>
+                    <a class="btn btn-outline-light nav-link" href="/user" style="border-radius: 20px; font-weight: bold; color: #f0f0f0;">{{ name }}</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="btn btn-outline-light nav-link dropdown-toggle" href="#" id="modelsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn btn-outline-light nav-link dropdown-toggle" href="#" id="modelsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 20px; font-weight: bold; color: #f0f0f0;">
                         Models
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="modelsDropdown">
-                        <li><a class="dropdown-item" href="/questions?index=0">Model 1</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="modelsDropdown">
+                        <li><a class="dropdown-item" href="/questions?index=0" >Model 1</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light nav-link" href="/about">About</a>
+                    <a class="btn btn-outline-light nav-link" href="/about" style="border-radius: 20px; font-weight: bold; color: #f0f0f0;">About</a>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="post" style="display: inline;">
-                        <button type="submit" class="btn btn-outline-light nav-link">Logout</button>
+                        <button type="submit" class="btn btn-outline-light nav-link" style="border-radius: 20px; font-weight: bold; color: #f0f0f0;">Logout</button>
                     </form>
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav>      
     <div class="container">
         <!-- Main Content -->
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body rounded d-flex flex-column align-items-center" style="background-color: #153448;">
-                        <h3 class="card-title" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #DFD0B8;">Unleash Your Perfect Play Position</h3>
-                        <p class="card-text" style="font-family: 'Poppins', sans-serif; font-weight: 400; color: #DFD0B8;">Our machine learning algorithm will analyze your responses and provide personalized recommendations based on your strengths and preferences.</p>
-                        <a href="/questions?index=0" class="btn btn-success mt-auto">Get Started</a>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="footer-icon">
+            <img src="{{ url_for('static', filename='images/Football_Background_Home_Bottom_right.png') }}" alt="Football Icon">
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzSIX6yMtt42MfT6Q1pAJTNafz5i5cf5dyD5adXDxM0c" crossorigin="anonymous"></script>
