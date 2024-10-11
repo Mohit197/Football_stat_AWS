@@ -1,3 +1,4 @@
+from routes import register_routes  # Import the register function
 from flask import Flask, render_template, request, redirect, session, make_response, jsonify,url_for
 import bcrypt
 from flask_pymongo import PyMongo
@@ -7,22 +8,18 @@ app = Flask(__name__)
 app.secret_key = "12ax12221zzx57z"
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
+# ToDO ---> Make a separate file for DB and for all routes.
 
 # Connect to MongoDB Atlas cluster
 uri = "mongodb+srv://arslantariq931:Hashmap12@statsfootball.ujhfl7y.mongodb.net/?retryWrites=true&w=majority&appName=StatsFootball"
 client = MongoClient(uri)
 db = client.get_database('Football')
 
+# Register all routes
+register_routes(app)
 
 
 
-@app.route("/")
-def home():
-    if session.get('username'):
-        name = session.get('name')  # Get the name from the session
-        return render_template('home.html', name=name)
-    else:
-        return redirect('/login')
 
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -78,16 +75,6 @@ def register():
     return render_template('register.html')
 
 
-
-
-@app.route("/about")
-def about():
-    # Check if the user is logged in
-    if 'name' not in session:
-        return redirect('/login')
-    return render_template('about.html')
-
-
 @app.route("/user")
 def user():
     # Check if the user is logged in
@@ -101,10 +88,6 @@ def user():
     }
     return render_template('user.html', user_info=user_info)
 
-
-@app.route("/contact")
-def contact():
-    return render_template('contact.html')
 
 @app.route("/user-home")
 def userhome():
@@ -267,6 +250,11 @@ def clear_question_session():
     session.pop('quiz_completed', None)
     return redirect('/questions')
 
+
+@app.route('/password_reset')
+def password_reset():
+    # This will render the password reset form where users input their email
+    return render_template('password_reset.html')
 
 
 #source venv/bin/activate 
