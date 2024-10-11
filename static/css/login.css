@@ -2,7 +2,7 @@
 .card {
     margin: 100px auto;
     width: 340px; /* Adjust the width to your preference */
-    height: 490px; /* Set the same height to make it square */
+    height: 530px; /* Set the same height to make it square */
     border: 2px solid black; /* Add a border */
     border-radius: 10px; /* Adjust border radius for rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

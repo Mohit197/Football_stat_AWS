@@ -43,8 +43,8 @@
                     <h2>{{ current_index + 1 }}. {{ current_question.text }}</h2>
                     <form action="/questions" method="POST" id="quiz-form">
                         {% for choice in current_question.choices %}
-                        <label class="custom-radio">{{ choice.text }}
-                            <input type="radio" name="choice" value="{{ choice.value }}" {% if choice.value == selected_choice %} checked {% endif %} required>
+                        <label class="custom-radio">{{ choice }}
+                            <input type="radio" name="choice" value="{{ choice }}" {% if choice == selected_choice %} checked {% endif %} required>
                             <span class="checkmark"></span>
                         </label><br>
                         {% endfor %}
