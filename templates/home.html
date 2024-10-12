@@ -7,39 +7,61 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Football Home Page</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/home.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url("{{ url_for('static', filename='/images/Football_Background2.jpg') }}");
+            background-image: url("{{ url_for('static', filename='/images/Football_Background_7.jpg') }}");
             background-size: cover;
             background-position: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent navbar */
+        }
+        .navbar-nav {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: flex-end; /* Align to the right */
+        }
+        .btn-outline-light.nav-link {
+            border-radius: 20px;
+            font-weight: bold;
+            color: #f0f0f0;
         }
         .btn-outline-light.nav-link:hover {
             color: #fff;
             background-color: rgba(255, 255, 255, 0.1);
             border-color: #fff;
         }
-        .navbar-brand, .navbar-toggler {
-            margin-left: 20px; /* Adjust this value as needed */
+        .footer-icon {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .footer-icon img {
+            max-width: 100px;
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .footer-icon img {
+                max-width: 80px;
+            }
         }
     </style>
-    <script src="{{ url_for('static', filename='/js/home.js') }}"></script>
-    <script>
-        /* If browser back button was used, flush cache */
-        (function () {
-            window.onpageshow = function(event) {
-                if (event.persisted) {
-                    window.location.reload();
-                }
-            };
-        })();
-    </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Football App</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" style="font-weight: bold; display: flex; align-items: center;">
+            <img src="{{ url_for('static', filename='images/Football_Background_Home_navbar.png') }}" alt="Football Icon" style="height: 30px; margin-right: 10px;">
+            ML Soccer Application
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,7 +74,7 @@
                     <a class="btn btn-outline-light nav-link dropdown-toggle" href="#" id="modelsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Models
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="modelsDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="modelsDropdown">
                         <li><a class="dropdown-item" href="/questions?index=0">Model 1</a></li>
                     </ul>
                 </li>
@@ -66,20 +88,9 @@
                 </li>
             </ul>
         </div>
-    </nav>
-    <div class="container">
+    </nav>      
+    <div class="container d-flex flex-column justify-content-center align-items-center flex-grow-1">
         <!-- Main Content -->
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body rounded d-flex flex-column align-items-center" style="background-color: #153448;">
-                        <h3 class="card-title" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #DFD0B8;">Unleash Your Perfect Play Position</h3>
-                        <p class="card-text" style="font-family: 'Poppins', sans-serif; font-weight: 400; color: #DFD0B8;">Our machine learning algorithm will analyze your responses and provide personalized recommendations based on your strengths and preferences.</p>
-                        <a href="/questions?index=0" class="btn btn-success mt-auto">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzSIX6yMtt42MfT6Q1pAJTNafz5i5cf5dyD5adXDxM0c" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

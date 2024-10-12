@@ -11,7 +11,6 @@ body {
     margin: 100px auto;
     width: 300px; /* Adjust the width to your preference */
     height: 595px; /* Set the same height to make it square */
-    border: 2px solid black; /* Add a border */
     border-radius: 10px; /* Adjust border radius for rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex; /* Use flexbox for centering content */

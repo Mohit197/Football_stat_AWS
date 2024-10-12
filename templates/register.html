@@ -9,8 +9,31 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: #CCD3CA;">
-    <div class="card mt-5">
+<body >
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='/images/Football_Background_register.jpg') }}");
+            background-size: cover; /* Ensures the image covers the entire area */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove any default margin */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-family: Arial, sans-serif; /* Set font */
+            overflow: hidden; /* Prevent scrolling if the image is larger */
+        }
+    
+        /* Media query for mobile devices */
+        @media only screen and (max-width: 768px) {
+            body {
+                background-size: cover; /* Ensure the image covers the area on mobile */
+                height: 100vh; /* Maintain full height */
+            }
+        }
+    </style>      
+    <div class="card mt-5" style="background-color:#F5F7F8;">
         <div class="card-body">
             <h2 class="text-center">Create User</h2>
             <form action="/register" method="post" onsubmit="return validatePassword()">
