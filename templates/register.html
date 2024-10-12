@@ -13,17 +13,26 @@
     <style>
         body {
             background-image: url("{{ url_for('static', filename='/images/Football_Background_register.jpg') }}");
-            background-size: 110%; /* Adjust this value to zoom out more or less */
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
+            background-size: cover; /* Ensures the image covers the entire area */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            height: 100vh; /* Full viewport height */
             margin: 0; /* Remove any default margin */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-family: Arial, sans-serif; /* Set font */
+            overflow: hidden; /* Prevent scrolling if the image is larger */
         }
-    </style>
+    
+        /* Media query for mobile devices */
+        @media only screen and (max-width: 768px) {
+            body {
+                background-size: cover; /* Ensure the image covers the area on mobile */
+                height: 100vh; /* Maintain full height */
+            }
+        }
+    </style>      
     <div class="card mt-5" style="background-color:#F5F7F8;">
         <div class="card-body">
             <h2 class="text-center">Create User</h2>
