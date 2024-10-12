@@ -9,13 +9,7 @@ function validatePassword() {
     errorElement.textContent = "";
     errorElement.classList.add('error--hidden');
 
-    // Check password length
-    if (passwordInput.value.length < 8) {
-        errorElement.textContent = "Password must be at least 8 characters long.";
-        errorElement.classList.remove('error--hidden');
-        return false;
-    }
-
+    
     // Check name validity
     var name = nameInput.value.trim();
     var nameRegex = /^[A-Za-z\s]+$/;
@@ -25,10 +19,18 @@ function validatePassword() {
         return false;
     }
 
+    
     // Check age validity
     var age = parseInt(ageInput.value, 10);
-    if (isNaN(age) || age > 70) {
+    if (isNaN(age) || age < 0 || age > 70) {
         errorElement.textContent = "Age must be a valid number and not more than 70.";
+        errorElement.classList.remove('error--hidden');
+        return false;
+    }
+
+    // Check password length
+    if (passwordInput.value.length < 8) {
+        errorElement.textContent = "Password must be at least 8 characters long.";
         errorElement.classList.remove('error--hidden');
         return false;
     }
@@ -47,10 +49,17 @@ function validatePassword() {
                 // If user doesn't exist, submit the form
                 document.forms[0].submit();
             }
+        } else {
+            errorElement.textContent = "Error checking username. Please try again.";
+            errorElement.classList.remove('error--hidden');
         }
+    };
+    xhr.onerror = function() {
+        errorElement.textContent = "Error: Request failed.";
+        errorElement.classList.remove('error--hidden');
     };
     xhr.send();
     
-    // Prevent form submission
+    // Prevent form submission until AJAX call completes
     return false;
 }

@@ -46,11 +46,16 @@ body {
 .btn-primary:focus {
     outline: none;
 }
+
 .error--hidden {
-    display: none;
-    font-family: 'Poetsen One', cursive; 
-    color: red;
+    display: none; /* Hide the error message */
 }
+
+.error {
+    color: red; /* Color for error messages */
+    margin-top: 10px; /* Space above the error message */
+}
+
 
 h2 {
     font-family: 'Poetsen One', cursive; /* Specify 'Poetsen One' font-family */
