@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url("{{ url_for('static', filename='/images/Football_Background5.jpg') }}");
+            background-image: url("{{ url_for('static', filename='/images/Football_Background_login1.jpg') }}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -25,7 +25,7 @@
     <div class="card">
         <div class="card-body text-center">
             <!-- Add your profile image here -->
-            <img src="{{ url_for('static', filename='/images/Football_Background1.jpg') }}" alt="Profile Image" class="profile-image">
+            <img src="{{ url_for('static', filename='/images/default_user_picture_background.jpg') }}" alt="Profile Image" class="profile-image" style="border: 2px solid black;">
             <h2 class="text-center">Welcome Champs :)</h2>
             <form id="loginForm" method="post">
                 <div class="form-group">
@@ -44,6 +44,9 @@
             </form>
             <div class="text-center">
                 <p>Don't have an account? <a href="/register" class="register-link">Register</a></p>
+            </div>
+            <div class="text-center"></div>
+                <p>Forget Password <a href="/password_reset" class="register-link">Reset</a></p>
             </div>
         </div>
     </div>

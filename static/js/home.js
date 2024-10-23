@@ -27,4 +27,4 @@ window.onload = function() {
         // Call the function with the updated image index
         changeBackgroundImage(currentImageIndex);
     }, 15000); // 15 seconds in milliseconds
-};
+}

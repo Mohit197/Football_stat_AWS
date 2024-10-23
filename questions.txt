@@ -1,50 +1,50 @@
 Q1: Which position do you enjoy playing the most?
-Scoring goals
-Passing and controlling the ball
-Stopping opponents from scoring
-Keeping the goal safe
+Scoring goals:2.5
+Passing and controlling the ball:5.5
+Stopping opponents from scoring:7.5
+Keeping the goal safe:10
 Q2: What are you best at during a game?
-Kicking the ball accurately
-Running with the ball
-Stopping opponents from getting the ball
-Jumping high to catch or head the ball
+Kicking the ball accurately:2.5
+Running with the ball:5.5
+Stopping opponents from getting the ball:7.5
+Jumping high to catch or head the ball:10
 Q3: How do you like to play during a match?
-Running fast and trying to score
-Passing the ball to teammates
-Tackling opponents and defending
-Being ready to save shots at the goal
+Running fast and trying to score:2.5
+Passing the ball to teammates:5.5
+Tackling opponents and defending:7.5
+Being ready to save shots at the goal:10
 Q4: What move do you like doing the most?
-Shooting the ball towards the goal
-Dribbling past opponents
-Intercepting passes from opponents
-Jumping to catch or head the ball
+Shooting the ball towards the goal:2.5
+Dribbling past opponents:5.5
+Intercepting passes from opponents:7.5
+Jumping to catch or head the ball:10
 Q5: What do you find most fun during a game?
-Scoring goals
-Running with the ball
-Blocking opponents from scoring
-Making saves at the goal
+Scoring goals:2.5
+Running with the ball:5.5
+Blocking opponents from scoring:7.5
+Making saves at the goal:10
 Q6: What do you enjoy most about playing soccer/football?
-Scoring goals and celebrating
-Passing and teamwork
-Making strong tackles and interceptions
-Making saves and keeping the goal safe
+Scoring goals and celebrating:2.5
+Passing and teamwork:5.5
+Making strong tackles and interceptions:7.5
+Making saves and keeping the goal safe:10
 Q7: What do you like practicing the most during training sessions?
-Shooting and scoring goals
-Practicing dribbling skills
-Learning defensive tactics
-Practicing saving shots at the goal
+Shooting and scoring goals:2.5
+Practicing dribbling skills:5.5
+Learning defensive tactics:7.5
+Practicing saving shots at the goal:10
 Q8: What is your favorite memory from playing soccer/football?
-Scoring a winning goal
-Assisting a teammate's goal
-Making a crucial defensive play
-Making a great save to keep the score level
+Scoring a winning goal:2.5
+Assisting a teammate's goal:5.5
+Making a crucial defensive play:7.5
+Making a great save to keep the score level:10
 Q9: What is your biggest dream in soccer/football?
-Becoming a top goal scorer
-Becoming a playmaker with great passes
-Becoming a solid defender
-Becoming a top goalkeeper
+Becoming a top goal scorer:2.5
+Becoming a playmaker with great passes:5.5
+Becoming a solid defender:7.5
+Becoming a top goalkeeper:10
 Q10: What type of soccer/football league do you enjoy watching the most?
-Fast-paced and exciting
-Focused on teamwork and strategy
-Tough and physical
-Highlighting great saves and defensive plays
+Fast-paced and exciting:2.5
+Focused on teamwork and strategy:5.5
+Tough and physical:7.5
+Highlighting great saves and defensive plays:10

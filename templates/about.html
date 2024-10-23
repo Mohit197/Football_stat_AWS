@@ -4,9 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinnacle</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/about.css') }}">
 </head>
+<style>
+    .profile-pic {
+        width: 100%; /* Take full width of the container */
+        max-height: 350px; /* Set maximum height */
+        object-fit: cover; /* Maintain aspect ratio while filling the space */
+    }
+</style>
 <body>
-    <h1>PHD Mohit Agarwal</h1>
-    <h1> Undergrad Arslan Tariq</h1>
+    <div class="about-section">
+        <h1>Pinnacle</h1>
+        <p>WOW</p>
+    </div>    
+
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img src="{{ url_for('static', filename='/images/Mohit_Agarwal_Profile_Pic.jpg') }}" alt="Mohit" class="profile-pic">
+                <div class="container">
+                    <h2>Mohit Agarwal</h2>
+                    <p class="title">CEO & Founder</p>
+                    <p>I am currently a graduate student in the Dept. of Mechanical and Aerospace Engineering at Rutgers University, NJ, USA. My research interests lie in Advanced Materials, Additive Manufacturing, and Machine Learning.</p>
+                    <p>Mohit_Agarwal@gmail.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="{{ url_for('static', filename='/images/Arslan_Tariq_Profile_Pic.jpg') }}" alt="Arslan" class="profile-pic">
+                <div class="container">
+                    <h2>Arslan Tariq</h2>
+                    <p class="title">Software Engineer</p>
+                    <p>I am a dynamic computer engineering graduate specializing in backend and full-stack development with a solid GPA of 3.0, honing my skills in Data Structures, Software Engineering, and Cloud Computing.</p>
+                    <p>Arslan_Tariq@gmail.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

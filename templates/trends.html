@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/trends.css') }}">
+</head>
+<body></body>
+    <!-- Home Button -->
+    <a href="/" class="home-button">Home</a>
+
+    <div class="container">
+        <h1>Share Your Trends</h1>
+
+        <!-- Form to add a new trend -->
+        <form action="/create_trend" method="POST" class="trend-form">
+            <textarea name="trend_content" placeholder="What's on your mind?" required></textarea>
+            <button type="submit">Post Trend</button>
+        </form>
+
+        <hr>
+
+        <h2>Latest Trends</h2>
+        <div class="trends-list">
+            <!-- Display trends -->
+            {% for trend in trends %}
+            <div class="trend-card">
+                <div class="trend-header">
+                    <strong>{{ trend.username }}</strong>
+                    <span class="timestamp">{{ trend.formatted_timestamp }}</span>
+                </div>
+                <p class="trend-content">{{ trend.content }}</p>
+
+                <!-- Allow the user to edit only their own trends -->
+                {% if trend.username == session['username'] %}
+                <form action="/edit_trend/{{ trend._id }}" method="POST" class="edit-form">
+                    <input type="text" name="new_content" placeholder="Edit your trend" required>
+                    <button type="submit">Edit</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</body>
+</html>
