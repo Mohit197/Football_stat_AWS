@@ -9,6 +9,7 @@ function validatePassword() {
     errorElement.textContent = "";
     errorElement.classList.add('error--hidden');
 
+    // Check User Name validity
     
     // Check name validity
     var name = nameInput.value.trim();
